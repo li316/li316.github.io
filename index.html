@@ -1,29 +1,35 @@
 <html>
 <body>
 <h1>我叫<span id="myname"></span></h1>
-    <p>我的学号是<span id="mynumber"></span>
-      <button id="btn">下一个</button>
+    <p>我的学号是<span id="mynumber"></span>  
+</p>
+<button id="btn">下一个</button>
         <img src="matrix.png">
           <img id="logo" src="timg.jfif" style="border-radius:10px 20px 40px 80px"/>
-</p>
-
 <script src="jquery-3.4.1.js"></script>
 <script>
 
   $(function(){
-    $.get("./data.json",function(result){
+    var callback=function(result){
+    $("#myname").text(result.myname);
+    $("#mynumber").text(result.mynumber);
+    }
+    $.ajax({
+      type:"POST",
+      url:"http://10.30.201.69:8585/data.json",
+      contentType:"application/json",
+      data:JSON.stringify({"stunumber":"2012020045"}),
+      callback
+    });
+    
 
+})
+
+$("#btn").click(function(){
+  $.get("http://10.30.201.69:8585/data.json",function(result){
     $("#myname").text(result.myname);
     $("#mynumber").text(result.mynumber);
   });
-
-  })
-
-$("#btn").click(function(){
-  $.get("./data1.json",function(result){
-    $("#myname").text(result.myname);
-    $("#mynumber").text(result.mynumber);
-  })
 
 })
 </script>
