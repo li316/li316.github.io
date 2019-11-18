@@ -17,9 +17,9 @@
     }
     $.ajax({
       type:"POST",
-      url:"http://10.30.201.69:8585/data.json",
+      url:"http://10.30.201.69:8585/userinfo",
       contentType:"application/json",
-      data:JSON.stringify({"stunumber":"2012020045"}),
+      data:JSON.stringify({"stunumber":"18002090216"}),
       callback
     });
     
@@ -27,7 +27,7 @@
 })
 
 $("#btn").click(function(){
-  $.get("http://10.30.201.69:8585/data.json",function(result){
+  $.get("http://10.30.201.69:8585/userinfo",function(result){
     $("#myname").text(result.myname);
     $("#mynumber").text(result.mynumber);
   });
